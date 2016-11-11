@@ -13,5 +13,8 @@
         "psr-4": {
             "fjgarlin\\": "src/"
         }
+    },
+    "require-dev": {
+        "laravel/homestead": "^3.0"
     }
 }
