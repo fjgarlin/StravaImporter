@@ -1,0 +1,17 @@
+{
+    "name": "frangarcia/strava",
+    "authors": [
+        {
+            "name": "Fran Garcia",
+            "email": "fran@iedesign.co.uk"
+        }
+    ],
+    "require": {
+        "iamstuartwilson/strava": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "fjgarlin\\": "src/"
+        }
+    }
+}

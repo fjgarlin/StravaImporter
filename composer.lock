@@ -1,0 +1,58 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "c2cf78fd2e3191b13a42ba1e2915b78e",
+    "content-hash": "38d6bcd20af6044f584aed62e6daf79c",
+    "packages": [
+        {
+            "name": "iamstuartwilson/strava",
+            "version": "1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iamstuartwilson/strava.git",
+                "reference": "9d03b920ecbf2d85cc8cb41f2be75bb0ac8d0d6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iamstuartwilson/strava/zipball/9d03b920ecbf2d85cc8cb41f2be75bb0ac8d0d6c",
+                "reference": "9d03b920ecbf2d85cc8cb41f2be75bb0ac8d0d6c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Iamstuartwilson": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stuart Wilson",
+                    "email": "bonjour@iamstuartwilson.com"
+                }
+            ],
+            "description": "PHP implementation of the Strava V3 API",
+            "time": "2016-10-26 09:33:19"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
