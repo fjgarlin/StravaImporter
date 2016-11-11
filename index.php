@@ -2,7 +2,7 @@
 
 require 'vendor/autoload.php';
 
-use fjgarlin\StravaCsvImporter;
+use fjgarlin\StravaImporter;
 
 // http://php.net/manual/en/function.str-getcsv.php
 function csvToArray($file_path) {
@@ -23,7 +23,7 @@ $config = [
     'secret' => $credentials->secret,
     'redirect_url' => 'http://' . $_SERVER['HTTP_HOST']
 ];
-$importer = new StravaCsvImporter($config);
+$importer = new StravaImporter($config);
 
 $code = isset($_GET['code']) ? $_GET['code'] : false;
 if ($code) {
