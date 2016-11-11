@@ -11,3 +11,5 @@ Create a .cred file with your data (copy from .cred.example). Obtain those crede
 
 First, you will need to authorize the app once set up. 
 Follow the instructions for the file format, attach it and click on submit. 
+
+Find a sample file in the **upload** folder. 
