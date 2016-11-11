@@ -61,7 +61,11 @@ if ($authorized and !empty($_POST) and !empty($_FILES)) {
             <hr>
 
             <?php if (!$authorized): ?>
-                <p><a href="<?php echo $authorize_url; ?>">Authorize</a></p>
+                <p>
+                    <a href="<?php echo $authorize_url; ?>" title="Authorize">
+                        <img src="img/btn_strava_connectwith_orange.png" alt="Connect with Strava">
+                    </a>
+                </p>
             <?php else: ?>
                 <div class="row">
                     <div class="col-sm-6">
@@ -113,5 +117,9 @@ if ($authorized and !empty($_POST) and !empty($_FILES)) {
                 <?php endif; ?>
             <?php endif; ?>
         </div><!-- .container -->
+        <footer class="text-right container">
+            <hr>
+            <img height="40" src="img/api_logo_pwrdBy_strava_horiz_light.png" alt="Powered by Strava">
+        </footer>
     </body>
 </html>
