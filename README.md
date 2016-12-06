@@ -1,6 +1,6 @@
 # StravaCsvUploader
 
-Upload a CSV containing activities to your Strava account. 
+Upload a CSV containing activities to your Strava account
 
 ## Set up
 
@@ -9,7 +9,7 @@ Create a .cred file with your data (copy from .cred.example). Obtain those crede
 
 ## Example (index.php)
 
-First, you will need to authorize the app once set up. 
-Follow the instructions for the file format, attach it and click on submit. 
+First, you will need to authorize the app once set up.
+Follow the instructions for the file format, attach it and click on submit.
 
-Find a sample file in the **upload** folder. 
+Find a sample file in the **upload** folder.
