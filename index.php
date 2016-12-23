@@ -2,21 +2,10 @@
 
 require 'vendor/autoload.php';
 
-use fjgarlin\StravaImporter;
-
-// http://php.net/manual/en/function.str-getcsv.php
-function csvToArray($file_path) {
-    $csv = array_map('str_getcsv', file($file_path));
-    array_walk($csv, function(&$a) use ($csv) {
-        $a = array_combine($csv[0], $a);
-    });
-    array_shift($csv); # remove column header
-
-    return $csv;
-}
-
 //********** somewhere in your routes or controllers...
 //functionality here
+use fjgarlin\StravaImporter;
+
 $credentials = json_decode(file_get_contents('.cred'));
 $config = [
     'id' => $credentials->id,
@@ -36,11 +25,7 @@ $athlete = $importer->getAthlete();
 
 $res = null;
 if ($authorized and !empty($_POST) and !empty($_FILES)) {
-    //get parsed data
-    $csv = csvToArray($_FILES['activities']['tmp_name']);
-
-    //and upload
-    $res = $importer->upload($csv);
+    $res = $importer->upload($_FILES['activities']['tmp_name']);
 }
 //********** somewhere in your routes or controllers...
 

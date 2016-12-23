@@ -132,13 +132,18 @@ class StravaImporter {
             ];
         }
 
-        if (!$data or !is_array($data)) {
+        if (!$data) {
             return (object)[
                 'status' => false,
                 'message' => 'Data is not valid.'
             ];
         }
 
+        //if the file is being passed instead of an array
+        if (!is_array($data)) {
+            $data = $this->_csvToArray($data);
+        }
+        
         $this->data = $data;
         foreach ($this->data as $activity) {
             $activity = (object)$activity;
@@ -161,5 +166,16 @@ class StravaImporter {
             'status' => true,
             'message' => 'Activity uploaded'
         ];
+    }
+
+    // http://php.net/manual/en/function.str-getcsv.php
+    protected function _csvToArray($file_path) {
+        $csv = array_map('str_getcsv', file($file_path));
+        array_walk($csv, function(&$a) use ($csv) {
+            $a = array_combine($csv[0], $a);
+        });
+        array_shift($csv); # remove column header
+
+        return $csv;
     }
 }
