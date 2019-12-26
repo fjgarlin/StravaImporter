@@ -8,6 +8,8 @@ Run `composer install` in the root folder. This will bring the dependencies and 
 
 Create a .cred file with your data (copy from .cred.example). Obtain those credentials from here: https://www.strava.com/settings/api
 
+Run a the code on a PHP server. If you have `php` command on your localhost then: `php -S localhost:8080` and then set `localhost` as callback domain in the link above.
+
 
 ## Example (index.php)
 

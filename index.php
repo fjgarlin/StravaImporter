@@ -6,26 +6,32 @@ require 'vendor/autoload.php';
 //functionality here
 use fjgarlin\StravaImporter;
 
-$credentials = json_decode(file_get_contents('.cred'));
-$config = [
-    'id' => $credentials->id,
-    'secret' => $credentials->secret,
-    'redirect_url' => 'http://' . $_SERVER['HTTP_HOST']
-];
-$importer = new StravaImporter($config);
+$credentials = NULL;
 
-$code = isset($_GET['code']) ? $_GET['code'] : false;
-if ($code) {
-    $importer->authorize($code);
-}
+if (file_exists('.cred')) {
+    $credentials = json_decode(file_get_contents('.cred'));
+    $config = [
+        'id' => $credentials->id,
+        'secret' => $credentials->secret,
+        'redirect_url' => 'http://' . $_SERVER['HTTP_HOST']
+    ];
+    $config_object = (object) $config;
 
-$authorized = $importer->authorized();
-$authorize_url = ($authorized) ? false : $importer->getAuthorizeUrl();
-$athlete = $importer->getAthlete();
+    $importer = new StravaImporter($config);
 
-$res = null;
-if ($authorized and !empty($_POST) and !empty($_FILES)) {
-    $res = $importer->upload($_FILES['activities']['tmp_name']);
+    $code = isset($_GET['code']) ? $_GET['code'] : false;
+    if ($code) {
+        $importer->authorize($code);
+    }
+
+    $authorized = $importer->authorized();
+    $authorize_url = "https://www.strava.com/oauth/authorize?client_id={$config_object->id}&response_type=code&redirect_uri={$config_object->redirect_url}&approval_prompt=force";
+    $athlete = $importer->getAthlete();
+
+    $res = null;
+    if ($authorized and !empty($_POST) and !empty($_FILES)) {
+        $res = $importer->upload($_FILES['activities']['tmp_name']);
+    }
 }
 //********** somewhere in your routes or controllers...
 
@@ -45,7 +51,12 @@ if ($authorized and !empty($_POST) and !empty($_FILES)) {
             </h1>
             <hr>
 
-            <?php if (!$authorized): ?>
+            <?php if (!$credentials): ?>
+                <p>
+                    Create a <b>.cred</b> file with your data <em>(copy from .cred.example)</em>. 
+                    Obtain those credentials from <a target="_blank" href="https://www.strava.com/settings/api">here</a>.
+                </p>
+            <?php elseif (!$authorized): ?>
                 <p>
                     <a href="<?php echo $authorize_url; ?>" title="Authorize">
                         <img src="img/btn_strava_connectwith_orange.png" alt="Connect with Strava">
@@ -72,7 +83,8 @@ if ($authorized and !empty($_POST) and !empty($_FILES)) {
                                 <div class="thumbnail text-center">
                                     <div class="caption">
                                         <h3><?php echo htmlspecialchars($athlete->firstname . " " . $athlete->lastname); ?></h3>
-                                        <p><?php echo htmlspecialchars($athlete->email); ?></p>
+                                        <p><?php echo htmlspecialchars($athlete->username); ?></p>
+                                        <p><img src="<?php echo $athlete->profile; ?>"></p>
                                         <p><a target="_blank" href="https://www.strava.com/athletes/<?php echo (int)$athlete->id; ?>" class="btn btn-primary" role="button">View profile</a></p>
                                     </div>
                                 </div>
